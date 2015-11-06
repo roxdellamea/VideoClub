@@ -1,0 +1,19 @@
+vc_homepage:
+    path:   /hello/{name}
+    defaults: { _controller: VideoClubBundle:Default:index }
+
+vc_movie_index:
+    path:   /movie/index
+    defaults: { _controller: VideoClubBundle:Movie:index }
+
+vc_movie_list:
+    path:   /movie/list/{val}
+    defaults: { _controller: VideoClubBundle:Movie:list }
+
+vc_movie_view:
+    path:   /movie/view/{val}
+    defaults: { _controller: VideoClubBundle:Movie:view }
+
+vc_pack_index:
+    path:   /pack/index/
+    defaults: { _controller: VideoClubBundle:PackageMin:index }

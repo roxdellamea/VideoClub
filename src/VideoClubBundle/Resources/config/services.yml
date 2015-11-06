@@ -1,0 +1,4 @@
+services:
+#    video_club.example:
+#        class: VideoClubBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
