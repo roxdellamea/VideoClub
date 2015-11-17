@@ -3,7 +3,10 @@
 namespace VideoClubBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use VideoClubBundle\Entity\Movie;
+use VideoClubBundle\Form\MovieType;
 
 class MovieController extends Controller
 {
@@ -22,15 +25,34 @@ class MovieController extends Controller
     	
 	}
 
-	public function viewAction($val)
+    public function addAction()
     {
-       	$repository = $this->getDoctrine()->getRepository('VideoClubBundle:Movie');
+        $movie = new Movie();
+        $form = $this->createCreateForm($movie);
 
-    	$movie = $repository->find($val);
+        return $this->render('VideoClubBundle:Movie:add.html.twig', array('form' => $form->createView()));
+    }
 
-    	
-    	
- 		return new Response('Titulo:' . $movie->getTitle() . ' Genero: ' . $movie->getGender() . '<br />' );
-    	
-	}
+    private function createCreateForm(Movie $entity)
+    {
+        $form = $this->createForm(new MovieType(), $entity, array('action' => $this->generateUrl('vc_movie_create'), 'method' => 'POST'));
+        return $form;
+    }
+	
+    public function createAction(Request $request)
+    {
+        $movie = new Movie();
+        $form = $this->createCreateForm($movie);
+        $form->handleRequest($request);
+
+        if($form->isValid())
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($movie);
+            $em->flush();
+
+            return $this->redirectToRoute('vc_movie_add');
+        }
+        return $this->render('VideoClubBundle:Movie:add.html.twig', array('form' => $form->createView()));
+    }
 }

@@ -1,0 +1,43 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+	<div class="main container">
+		<div class="row well">
+			<div class="page-header">
+				<h2> Registrarse a MovieX </h2>
+			</div>
+				{{ form_start(form, {'attr' : {'title' : 'form'} }) }}
+				
+				<div class="form-group">
+					Nombre
+					{{ form_widget(form.firstname, {'attr' : {'class' : 'form-control', 'placeholder' : 'Nombre'} }) }}
+					<span class = "text-danger"> {{ form_errors(form.firstname) }} </span>
+				</div>
+				<div class="form-group">
+					Apellido
+					{{ form_widget(form.lastname, {'attr' : {'class' : 'form-control', 'placeholder' : 'Apellido'} }) }}
+					<span class = "text-danger"> {{ form_errors(form.lastname) }} </span>
+				</div>
+				<div class="form-group">
+					E-mail
+					{{ form_widget(form.email, {'attr' : {'class' : 'form-control', 'placeholder' : 'Email'} }) }}
+					<span class = "text-danger"> {{ form_errors(form.email) }} </span>
+				</div>
+				<div class="form-group">
+					Nombre de usuario
+					{{ form_widget(form.username, {'attr' : {'class' : 'form-control', 'placeholder' : 'Nombre de Usuario'} }) }}
+					<span class = "text-danger"> {{ form_errors(form.username) }} </span>
+				</div>
+				<div class="form-group">
+					Contraseña
+					{{ form_widget(form.password, {'attr' : {'class' : 'form-control', 'placeholder' : 'Contraseña'} }) }}
+					<span class = "text-danger"> {{ form_errors(form.password) }} </span>
+				</div>
+				
+				<p>{{ form_widget(form.save, {'label' : 'Registrarse', 'attr' : {'class' : 'btn bt - success' }} ) }} 
+				</p>
+				
+				{{ form_end(form) }}
+		</div>
+	</div>
+{% endblock %}

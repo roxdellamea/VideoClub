@@ -3,6 +3,8 @@
 namespace VideoClubBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * User
@@ -10,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="users")
  * @ORM\Entity(repositoryClass="VideoClubBundle\Entity\UserRepository")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @var integer
@@ -60,6 +62,7 @@ class User
      * @var integer
      *
      * @ORM\Column(name="freemin", type="integer")
+     * @Assert\IsNull()
      */
     private $freemin;
 
@@ -216,6 +219,21 @@ class User
     public function getFreemin()
     {
         return $this->freemin;
+    }
+
+    public function getRoles()
+    {
+
+    }
+
+    public function getSalt()
+    {
+
+    }
+
+    public function eraseCredentials()
+    {
+
     }
 }
 

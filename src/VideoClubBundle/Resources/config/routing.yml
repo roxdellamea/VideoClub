@@ -14,6 +14,24 @@ vc_movie_view:
     path:   /movie/view/{val}
     defaults: { _controller: VideoClubBundle:Movie:view }
 
+vc_movie_add:
+    path:   /movie/add/
+    defaults: { _controller: VideoClubBundle:Movie:add }
+
+vc_movie_create:
+    path:   /movie/create/
+    defaults: { _controller: VideoClubBundle:Movie:create }
+    methods: POST
+
+vc_user_add:
+    path:   /user/add/
+    defaults: { _controller: VideoClubBundle:User:add }
+
+vc_user_create:
+    path:   /user/create/
+    defaults: { _controller: VideoClubBundle:User:create }
+    methods: POST
+
 vc_pack_index:
     path:   /pack/index/
     defaults: { _controller: VideoClubBundle:PackageMin:index }

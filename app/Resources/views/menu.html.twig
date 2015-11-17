@@ -32,7 +32,7 @@
         </li>
         <li><a href="{{ path('vc_pack_index') }}">Promociones</a></li>
       </ul>
-      <form class="navbar-form navbar-right" role="search">
+      <form class="navbar-form navbar-right" role="search" method="POST" action="">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Titulo / Año">
         </div>
@@ -40,8 +40,9 @@
       </form>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#">Entrar</a></li>
-        <li><a href="#">Registrarse</a></li>
+        <li><a href="{{ path('vc_user_add') }}">Registrarse</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+

@@ -45,7 +45,7 @@ class Movie
     /**
      * @var string
      *
-     * @ORM\Column(name="synopsis", type="string", length=255)
+     * @ORM\Column(name="synopsis", type="text")
      */
     private $synopsis;
 

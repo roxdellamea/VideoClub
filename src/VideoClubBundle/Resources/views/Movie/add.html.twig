@@ -1,0 +1,47 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+	<div class="main container">
+		<div class="row well">
+			<div class="page-header">
+				<h2> Nueva Pelicula </h2>
+			</div>
+				{{ form_start(form, {'attr' : {'title' : 'form'} }) }}
+				
+				<div class="form-group">
+					Titulo
+					{{ form_widget(form.title, {'attr' : {'class' : 'form-control', 'placeholder' : 'Titulo'} }) }}
+					<span class = "text-danger"> {{ form_errors(form.title) }} </span>
+				</div>
+				<div class="form-group">
+					Año
+					{{ form_widget(form.year, {'attr' : {'class' : 'form-control', 'placeholder' : 'Año'} }) }}
+					<span class = "text-danger"> {{ form_errors(form.year) }} </span>
+				</div>
+				<div class="form-group">
+					Genero
+					{{ form_widget(form.gender, {'attr' : {'class' : 'form-control', 'placeholder' : 'Género'} }) }}
+					<span class = "text-danger"> {{ form_errors(form.gender) }} </span>
+				</div>
+				<div class="form-group">
+					Sinopsis
+					{{ form_widget(form.synopsis, {'attr' : {'class' : 'form-control', 'placeholder' : 'Sinopsis'} }) }}
+					<span class = "text-danger"> {{ form_errors(form.synopsis) }} </span>
+				</div>
+				<div class="form-group">
+					Duración
+					{{ form_widget(form.runtime, {'attr' : {'class' : 'form-control', 'placeholder' : 'Duración'} }) }}
+					<span class = "text-danger"> {{ form_errors(form.runtime) }} </span>
+				</div>
+				<div class="form-group">
+					Imagen
+					{{ form_widget(form.image, {'attr' : {'class' : 'form-control', 'placeholder' : 'Imagen'} }) }}
+					<span class = "text-danger"> {{ form_errors(form.image) }} </span>
+				</div>
+				<p>{{ form_widget(form.save, {'label' : 'Cargar Pelicula', 'attr' : {'class' : 'btn bt - success' }} ) }} 
+				</p>
+				
+				{{ form_end(form) }}
+		</div>
+	</div>
+{% endblock %}
