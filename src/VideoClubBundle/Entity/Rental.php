@@ -28,6 +28,19 @@ class Rental
      */
     private $date;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Movie", inversedBy="rentals")
+     * @ORM\JoinColumn(name="movie_id", referencedColumnName="id")
+     */
+    private $movie;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="rentals")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
+
+
 
     /**
      * Get id
@@ -62,5 +75,100 @@ class Rental
     {
         return $this->date;
     }
-}
 
+    /**
+     * Set movieId
+     *
+     * @param integer $movieId
+     *
+     * @return Rental
+     */
+    public function setMovieId($movieId)
+    {
+        $this->movie_id = $movieId;
+
+        return $this;
+    }
+
+    /**
+     * Get movieId
+     *
+     * @return integer
+     */
+    public function getMovieId()
+    {
+        return $this->movie_id;
+    }
+
+    /**
+     * Set userId
+     *
+     * @param integer $userId
+     *
+     * @return Rental
+     */
+    public function setUserId($userId)
+    {
+        $this->user_id = $userId;
+
+        return $this;
+    }
+
+    /**
+     * Get userId
+     *
+     * @return integer
+     */
+    public function getUserId()
+    {
+        return $this->user_id;
+    }
+
+    /**
+     * Set movie
+     *
+     * @param \VideoClubBundle\Entity\Movie $movie
+     *
+     * @return Rental
+     */
+    public function setMovie(\VideoClubBundle\Entity\Movie $movie = null)
+    {
+        $this->movie = $movie;
+
+        return $this;
+    }
+
+    /**
+     * Get movie
+     *
+     * @return \VideoClubBundle\Entity\Movie
+     */
+    public function getMovie()
+    {
+        return $this->movie;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \VideoClubBundle\Entity\User $user
+     *
+     * @return Rental
+     */
+    public function setUser(\VideoClubBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \VideoClubBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+}

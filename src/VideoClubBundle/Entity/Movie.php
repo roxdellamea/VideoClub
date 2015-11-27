@@ -2,6 +2,7 @@
 
 namespace VideoClubBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -63,6 +64,10 @@ class Movie
      */
     private $image;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Rental", mappedBy="movie")
+     */
+    private $rentals;
 
     /**
      * Get id
@@ -217,5 +222,45 @@ class Movie
     {
         return $this->image;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->rentals = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add rental
+     *
+     * @param \VideoClubBundle\Entity\Rental $rental
+     *
+     * @return Movie
+     */
+    public function addRental(\VideoClubBundle\Entity\Rental $rental)
+    {
+        $this->rentals[] = $rental;
+
+        return $this;
+    }
+
+    /**
+     * Remove rental
+     *
+     * @param \VideoClubBundle\Entity\Rental $rental
+     */
+    public function removeRental(\VideoClubBundle\Entity\Rental $rental)
+    {
+        $this->rentals->removeElement($rental);
+    }
+
+    /**
+     * Get rentals
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getRentals()
+    {
+        return $this->rentals;
+    }
+}

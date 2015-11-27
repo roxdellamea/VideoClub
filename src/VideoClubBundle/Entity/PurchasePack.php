@@ -42,6 +42,18 @@ class PurchasePack
      */
     private $totalcost;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="purchases")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="PackageMin", inversedBy="purchases")
+     * @ORM\JoinColumn(name="packagemin_id", referencedColumnName="id")
+     */
+    private $packagemin;
+
 
     /**
      * Get id
@@ -124,5 +136,100 @@ class PurchasePack
     {
         return $this->totalcost;
     }
-}
 
+    /**
+     * Set packageminId
+     *
+     * @param integer $packageminId
+     *
+     * @return PurchasePack
+     */
+    public function setPackageminId($packageminId)
+    {
+        $this->packagemin_id = $packageminId;
+
+        return $this;
+    }
+
+    /**
+     * Get packageminId
+     *
+     * @return integer
+     */
+    public function getPackageminId()
+    {
+        return $this->packagemin_id;
+    }
+
+    /**
+     * Set userId
+     *
+     * @param integer $userId
+     *
+     * @return PurchasePack
+     */
+    public function setUserId($userId)
+    {
+        $this->user_id = $userId;
+
+        return $this;
+    }
+
+    /**
+     * Get userId
+     *
+     * @return integer
+     */
+    public function getUserId()
+    {
+        return $this->user_id;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \VideoClubBundle\Entity\User $user
+     *
+     * @return PurchasePack
+     */
+    public function setUser(\VideoClubBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \VideoClubBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set packagemin
+     *
+     * @param \VideoClubBundle\Entity\PackageMin $packagemin
+     *
+     * @return PurchasePack
+     */
+    public function setPackagemin(\VideoClubBundle\Entity\PackageMin $packagemin = null)
+    {
+        $this->packagemin = $packagemin;
+
+        return $this;
+    }
+
+    /**
+     * Get packagemin
+     *
+     * @return \VideoClubBundle\Entity\PackageMin
+     */
+    public function getPackagemin()
+    {
+        return $this->packagemin;
+    }
+}

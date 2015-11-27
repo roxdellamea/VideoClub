@@ -2,9 +2,10 @@
 
 namespace VideoClubBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * User
@@ -12,7 +13,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Table(name="users")
  * @ORM\Entity(repositoryClass="VideoClubBundle\Entity\UserRepository")
  */
-class User implements UserInterface
+class User extends BaseUser
 {
     /**
      * @var integer
@@ -21,7 +22,7 @@ class User implements UserInterface
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
@@ -38,27 +39,6 @@ class User implements UserInterface
     private $lastname;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=100)
-     */
-    private $email;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="username", type="string", length=50)
-     */
-    private $username;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="password", type="string", length=50)
-     */
-    private $password;
-
-    /**
      * @var integer
      *
      * @ORM\Column(name="freemin", type="integer")
@@ -66,16 +46,15 @@ class User implements UserInterface
      */
     private $freemin;
 
+    /**
+     * @ORM\OneToMany(targetEntity="PurchasePack", mappedBy="user")
+     */
+    private $purchases;
 
     /**
-     * Get id
-     *
-     * @return integer
+     * @ORM\OneToMany(targetEntity="Rental", mappedBy="user")
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $rentals;
 
     /**
      * Set firstname
@@ -126,78 +105,6 @@ class User implements UserInterface
     }
 
     /**
-     * Set email
-     *
-     * @param string $email
-     *
-     * @return User
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * Set username
-     *
-     * @param string $username
-     *
-     * @return User
-     */
-    public function setUsername($username)
-    {
-        $this->username = $username;
-
-        return $this;
-    }
-
-    /**
-     * Get username
-     *
-     * @return string
-     */
-    public function getUsername()
-    {
-        return $this->username;
-    }
-
-    /**
-     * Set password
-     *
-     * @param string $password
-     *
-     * @return User
-     */
-    public function setPassword($password)
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * Get password
-     *
-     * @return string
-     */
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
-    /**
      * Set freemin
      *
      * @param integer $freemin
@@ -221,19 +128,81 @@ class User implements UserInterface
         return $this->freemin;
     }
 
-    public function getRoles()
+    /**
+     * Constructor
+     */
+    public function __construct()
     {
-
+        parent::__construct();
+        $this->rentals = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->purchases = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-    public function getSalt()
+    /**
+     * Add purchase
+     *
+     * @param \VideoClubBundle\Entity\PurchasePack $purchase
+     *
+     * @return User
+     */
+    public function addPurchase(\VideoClubBundle\Entity\PurchasePack $purchase)
     {
+        $this->purchases[] = $purchase;
 
+        return $this;
     }
 
-    public function eraseCredentials()
+    /**
+     * Remove purchase
+     *
+     * @param \VideoClubBundle\Entity\PurchasePack $purchase
+     */
+    public function removePurchase(\VideoClubBundle\Entity\PurchasePack $purchase)
     {
+        $this->purchases->removeElement($purchase);
+    }
 
+    /**
+     * Get purchases
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPurchases()
+    {
+        return $this->purchases;
+    }
+
+    /**
+     * Add rental
+     *
+     * @param \VideoClubBundle\Entity\Rental $rental
+     *
+     * @return User
+     */
+    public function addRental(\VideoClubBundle\Entity\Rental $rental)
+    {
+        $this->rentals[] = $rental;
+
+        return $this;
+    }
+
+    /**
+     * Remove rental
+     *
+     * @param \VideoClubBundle\Entity\Rental $rental
+     */
+    public function removeRental(\VideoClubBundle\Entity\Rental $rental)
+    {
+        $this->rentals->removeElement($rental);
+    }
+
+    /**
+     * Get rentals
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getRentals()
+    {
+        return $this->rentals;
     }
 }
-

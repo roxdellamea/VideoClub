@@ -2,6 +2,7 @@
 
 namespace VideoClubBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -41,6 +42,11 @@ class PackageMin
      * @ORM\Column(name="cost", type="decimal")
      */
     private $cost;
+
+    /**
+     * @ORM\OneToMany(targetEntity="PurchasePack", mappedBy="packagemin")
+     */
+    private $purchases;
 
 
     /**
@@ -124,5 +130,45 @@ class PackageMin
     {
         return $this->cost;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->purchases = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add purchase
+     *
+     * @param \VideoClubBundle\Entity\PurchasePack $purchase
+     *
+     * @return PackageMin
+     */
+    public function addPurchase(\VideoClubBundle\Entity\PurchasePack $purchase)
+    {
+        $this->purchases[] = $purchase;
+
+        return $this;
+    }
+
+    /**
+     * Remove purchase
+     *
+     * @param \VideoClubBundle\Entity\PurchasePack $purchase
+     */
+    public function removePurchase(\VideoClubBundle\Entity\PurchasePack $purchase)
+    {
+        $this->purchases->removeElement($purchase);
+    }
+
+    /**
+     * Get purchases
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPurchases()
+    {
+        return $this->purchases;
+    }
+}
