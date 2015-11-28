@@ -13,3 +13,4 @@ easy_admin_bundle:
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
+

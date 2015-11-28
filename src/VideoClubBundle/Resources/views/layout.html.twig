@@ -1,0 +1,12 @@
+{% extends 'layout.html.twig' %}
+{% block menu %}{% endblock%}
+{% block body %}
+	<div class="row" style="">
+		<div class="col-xs-12 col-md-4 col-lg-4 " ></div>
+		<div class="col-xs-12 col-md-4 margin2">
+			<h1 class="text-center" > </h1>
+			{% block fos_user_content %}{% endblock fos_user_content %}
+		</div>
+	</div>	
+    
+{% endblock%}
