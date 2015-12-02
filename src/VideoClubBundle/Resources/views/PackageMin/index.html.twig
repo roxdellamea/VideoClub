@@ -2,16 +2,13 @@
 
 {% block body %}
 
-<h1>Compra tu paquete de minutos</h1>
-
-
+<h1>Elegí el paquete que más te conviene</h1>
 
 <div class="panel panel-default">
   <div class="panel-body">
 	<div class="row">
 	
 	{% for pack in packs %}
-	  
 	  <div class="col-md-4">
 	    <div class="thumbnail">
 	      <img src="{{ asset('public/img/pack1.jpg') }}" alt="...">
@@ -19,17 +16,12 @@
 	        <h3>{{ pack.packname }}</h3>
 	        <p>Minutos incluidos: {{ pack.minutes }}</p>
 	        <p>Costo: $ {{ pack.cost }}</p>
-	        <p><a href="#" class="btn btn-primary" role="button">Comprar</a></p>
+	        <a href="{{ path('pack_buy', { 'id': pack.id }) }}" class="btn btn-primary">Comprar</a>
 	      </div>
 	    </div>
 	  </div>
-
 	{% endfor %}
-
 	</div>
-
-	
-
   </div>
 </div>
 

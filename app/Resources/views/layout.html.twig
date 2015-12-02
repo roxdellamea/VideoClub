@@ -10,12 +10,11 @@
 
     </head>
     <body>
-        {% block menu %} {{ include('menu.html.twig') }} {% endblock %}
+        {% block menu %}{{ include('menu.html.twig') }}{% endblock %}
         {% block body %}{% endblock %}
         {% block javascripts %}
             <script src="{{ asset('public/js/jquery-1.11.3.min.js') }}"></script>
             <script src="{{ asset('public/js/bootstrap.min.js') }}"></script>
-
         {% endblock %}
     </body>
 </html>

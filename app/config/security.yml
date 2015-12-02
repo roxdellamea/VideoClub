@@ -25,8 +25,20 @@ security:
             form_login:
                 provider: fos_userbundle
                 csrf_provider: security.csrf.token_manager # Use form.csrf_provider instead for Symfony <2.4
-
-            logout:       true
+                default_target_path: /movie/index #para redirección luego de logueo
+            # default_target_path: /es/video/dashboard
+            #logueo hacia la página predeterminada
+            # always_use_default_target_path: true
+            #Utilizando la URL referente
+            # use_referer: true
+            # failure_path: /login_failure
+            #default_target_path: /movie/index #para redirección luego de logueo
+            # use_forward: true
+            logout:
+                path: /logout
+                target: /movie/index
+            anonymous: true
+            
             anonymous:    true
 
             # activate different ways to authenticate
